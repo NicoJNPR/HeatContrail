@@ -530,7 +530,7 @@ resources:
     type: OS::Nova::Server
     depends_on: [ template_InstanceIp_21, template_InstanceIp_22, template_InstanceIp_23 ]
     properties:
-#      config_root: "config-root"        
+      config_root: "config-root"        
       name: {get_param: svm2_name }
       image: { get_param:  svm2_image }
       flavor: { get_param: svm2_flavor }

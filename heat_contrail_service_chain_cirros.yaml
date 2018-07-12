@@ -1,4 +1,4 @@
-heat_template_version: 2015-04-30
+config_rootheat_template_version: 2015-04-30
 
 parameters:
   domain:
@@ -423,7 +423,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_1, template_VirtualNetwork_1 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
 
@@ -431,7 +431,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_2, template_VirtualNetwork_2 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
 
@@ -439,7 +439,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_3, template_VirtualNetwork_3 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_3 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
 
@@ -480,7 +480,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_21, template_VirtualNetwork_1 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_21 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
 
@@ -488,7 +488,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_22, template_VirtualNetwork_2 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_22 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
 
@@ -496,7 +496,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_23, template_VirtualNetwork_3 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_23 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
 
@@ -504,7 +504,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_4, template_VirtualNetwork_2 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_4 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
 
@@ -512,7 +512,7 @@ resources:
     type: OS::ContrailV2::InstanceIp
     depends_on: [ template_VirtualMachineInterface_5, template_VirtualNetwork_3 ]
     properties:
-      ##config_root: "config-root"
+      config_root: "config-root"
       virtual_machine_interface_refs: [{ get_resource: template_VirtualMachineInterface_5 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
 

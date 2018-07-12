@@ -657,9 +657,10 @@ resources:
                  }],
                security_group_entries_policy_rule_src_ports:
                  [{
-                   security_group_entries_policy_rule_src_ports_start_port: 22,
-                   security_group_entries_policy_rule_src_ports_end_port: 22,
+                   security_group_entries_policy_rule_src_ports_start_port: -1,
+                   security_group_entries_policy_rule_src_ports_end_port: -1,
                  }],
              }
+            ]}
 
 

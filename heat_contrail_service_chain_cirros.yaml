@@ -635,7 +635,7 @@ resources:
         {
           security_group_entries_policy_rule:
             [{
-               security_group_entries_policy_rule_protocol: all,
+               security_group_entries_policy_rule_protocol: -1,
                security_group_entries_policy_rule_direction: '<>',
                security_group_entries_policy_rule_ethertype: 'IPv4',
                security_group_entries_policy_rule_dst_addresses:

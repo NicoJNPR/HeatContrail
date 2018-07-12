@@ -408,6 +408,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
   
   template_VirtualMachineInterface_2:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -419,6 +420,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_VirtualMachineInterface_3:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -430,6 +432,8 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
 
   template_InstanceIp_1:
     type: OS::ContrailV2::InstanceIp
@@ -465,6 +469,8 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
   
   template_VirtualMachineInterface_22:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -476,6 +482,8 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
 
   template_VirtualMachineInterface_23:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -487,6 +495,8 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
 
   template_InstanceIp_21:
     type: OS::ContrailV2::InstanceIp
@@ -532,7 +542,6 @@ resources:
     type: OS::Nova::Server
     depends_on: [ template_InstanceIp_1, template_InstanceIp_2, template_InstanceIp_3 ]
     properties:
-#      config_root: "config-root"
       name: {get_param: svm1_name }
       image: { get_param:  svm1_image }
       flavor: { get_param: svm1_flavor }
@@ -545,7 +554,6 @@ resources:
     type: OS::Nova::Server
     depends_on: [ template_InstanceIp_21, template_InstanceIp_22, template_InstanceIp_23 ]
     properties:
-#      config_root: "config-root"
       name: {get_param: svm2_name }
       image: { get_param:  svm2_image }
       flavor: { get_param: svm2_flavor }
@@ -559,12 +567,16 @@ resources:
     properties:
       name: { get_param: left_vm_name }
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
   
   template_VirtualMachineInterface_5:
     type: OS::ContrailV2::VirtualMachineInterface
     properties:
       name: { get_param: right_vm_name }
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
+
   
   template_leftVM:
     type: OS::Nova::Server
@@ -613,4 +625,41 @@ resources:
                   { get_param: apply_services }
                   }}]
   }
+
+
+  test_security_group:
+    type: OS::ContrailV2::SecurityGroup
+    properties:
+      name: test_security_group
+      security_group_entries:
+        {
+          security_group_entries_policy_rule:
+            [{
+               security_group_entries_policy_rule_protocol: all,
+               security_group_entries_policy_rule_direction: '<>',
+               security_group_entries_policy_rule_ethertype: 'IPv4',
+               security_group_entries_policy_rule_dst_addresses:
+                 [{
+                   security_group_entries_policy_rule_dst_addresses_subnet:
+                     {
+                       security_group_entries_policy_rule_dst_addresses_subnet_ip_prefix: 0.0.0.0,
+                       security_group_entries_policy_rule_dst_addresses_subnet_ip_prefix_len: 0,
+                     },
+                 }],
+               security_group_entries_policy_rule_dst_ports:
+                 [{
+                   security_group_entries_policy_rule_dst_ports_start_port: -1,
+                   security_group_entries_policy_rule_dst_ports_end_port: -1,
+                 }],
+               security_group_entries_policy_rule_src_addresses:
+                 [{
+                   security_group_entries_policy_rule_src_addresses_security_group: 'local',
+                 }],
+               security_group_entries_policy_rule_src_ports:
+                 [{
+                   security_group_entries_policy_rule_src_ports_start_port: 22,
+                   security_group_entries_policy_rule_src_ports_end_port: 22,
+                 }],
+             }
+
 

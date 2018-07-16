@@ -396,6 +396,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]    
 
   template_VirtualMachineInterface_2:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -407,6 +408,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_VirtualMachineInterface_3:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -418,6 +420,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple1 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_InstanceIp_1:
     type: OS::ContrailV2::InstanceIp
@@ -453,6 +456,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_1, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_VirtualMachineInterface_22:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -464,6 +468,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_VirtualMachineInterface_23:
     type: OS::ContrailV2::VirtualMachineInterface
@@ -475,6 +480,7 @@ resources:
         }
       port_tuple_refs: [{ get_resource: template_PortTuple2 }]
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_InstanceIp_21:
     type: OS::ContrailV2::InstanceIp
@@ -547,12 +553,14 @@ resources:
     properties:
       name: { get_param: left_vm_name }
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_2, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_VirtualMachineInterface_5:
     type: OS::ContrailV2::VirtualMachineInterface
     properties:
       name: { get_param: right_vm_name }
       virtual_network_refs: [{ list_join: [':', { get_attr: [ template_VirtualNetwork_3, fq_name ] } ] }]
+      security_group_refs: [{ list_join: [':', { get_attr: [ test_security_group, fq_name ] } ] }]
 
   template_leftVM:
     type: OS::Nova::Server
@@ -651,4 +659,4 @@ resources:
             ]}
 
 
-  
+

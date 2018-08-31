@@ -36,7 +36,7 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
           -e HeatContrail/heat_contrail_service_chain_cirros.env`
 
    2. with custom domain/tenant
-   / this scenario is having a bug, being looked at /
+   * / this scenario is having a bug, being looked at /
       * `OS_PROJECT_NAME=Nicolas openstack stack create NicolasHeatCirros   -t HeatContrail/heat_contrail_service_chain_cirros.yaml   -e HeatContrail/heat_contrail_service_chain_cirros.env   --parameter domain=default-domain   --parameter tenant=$OS_PROJECT_NAME`
         (got this openstack bug in ocata https://bugs.launchpad.net/kolla-ansible/+bug/1690975)
 

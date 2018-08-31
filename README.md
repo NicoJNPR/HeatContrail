@@ -2,6 +2,8 @@
 
 In order to launch a Contrail service-chain made of two Service-Instance (using Cirros with routing pre-enabled), follow those steps:
 
+1. git clone https://github.com/NicoJNPR/HeatContrail
+
 1. download Cirros image, credentials are `cirros/gocubsgo`
         wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 1. install heat client if needed

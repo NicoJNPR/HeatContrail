@@ -6,14 +6,16 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
    * `yum install -y gcc python-devel \
     pip install python-openstackclient \
     pip install python-ironicclient`    
+1. install heat client (if need be)
+   * `pip install python-heatclient`
 1. Install scripts
    * `git clone https://github.com/NicoJNPR/HeatContrail`
 1. download Cirros image, credentials are `cirros/gocubsgo`
    * `wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img`
-1. install heat client if needed
-   * `pip install python-heatclient`
 1. source your OpenStack env file
    * `source /etc/kolla/kolla-toolbox/admin-openrc.sh`
+   1. create flavor
+   * `openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
 1. upload basic Cirros image (use Cirros image of your choice)
    * `openstack image create cirros \
           --disk-format qcow2 \
@@ -26,8 +28,6 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
           --public \
           --container-format bare \
           --file HeatContrail/CirrosVNF_mgnt_left_right.img`
-1. create flavor
-   * `openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
 1. create the stack with default domain and tenant or custom ones
 
    1. `with default domain and tenant/project

@@ -643,8 +643,8 @@ resources:
                  }],
                security_group_entries_policy_rule_dst_ports:
                  [{
-                   security_group_entries_policy_rule_dst_ports_start_port: -1,
-                   security_group_entries_policy_rule_dst_ports_end_port: -1,
+                   security_group_entries_policy_rule_dst_ports_start_port: 0,
+                   security_group_entries_policy_rule_dst_ports_end_port: 65535,
                  }],
                security_group_entries_policy_rule_src_addresses:
                  [{
@@ -652,8 +652,8 @@ resources:
                  }],
                security_group_entries_policy_rule_src_ports:
                  [{
-                   security_group_entries_policy_rule_src_ports_start_port: -1,
-                   security_group_entries_policy_rule_src_ports_end_port: -1,
+                   security_group_entries_policy_rule_src_ports_start_port: 0,
+                   security_group_entries_policy_rule_src_ports_end_port: 65535,
                  }],
              }
             ]}

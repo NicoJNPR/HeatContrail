@@ -3,9 +3,9 @@
 In order to launch a Contrail service-chain made of two Service-Instance (using Cirros with routing pre-enabled), follow those steps:
 
 1. Install OpenStack CLI (if need be)
-   * `yum install -y gcc python-devel \
-    pip install python-openstackclient \
-    pip install python-ironicclient`    
+   * `yum install -y gcc python-devel
+   * pip install python-openstackclient
+   * pip install python-ironicclient`    
 1. install heat client (if need be)
    * `pip install python-heatclient`
 1. Install scripts
@@ -17,23 +17,13 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
 1. create flavor
    * `openstack flavor create --ram 64 --disk 1 --vcpus 1 m1.tiny`
 1. upload basic Cirros image
-   * `openstack image create cirros \
-          --disk-format qcow2 \
-          --container-format bare \
-          --public \
-          --file cirros-0.4.0-x86_64-disk.img`
+   * `openstack image create cirros --disk-format qcow2 --container-format bare --public --file cirros-0.4.0-x86_64-disk.img`
 1. upload modified Cirros image with routing enabled, credentials are `cirros/cubswin:)`
-   * `openstack image create CirrosVNF_mgnt_left_right \
-          --disk-format qcow2 \
-          --public \
-          --container-format bare \
-          --file HeatContrail/CirrosVNF_mgnt_left_right.img`
+   * `openstack image create CirrosVNF_mgnt_left_right --disk-format qcow2 --public --container-format bare --file HeatContrail/CirrosVNF_mgnt_left_right.img`
 1. create the stack with default domain and admin tenant or custom ones
 
    1. with default domain and admin tenant/project
-      * `openstack stack create NicoHeatCirros \
-        -t HeatContrail/heat_contrail_service_chain_cirros.yaml \
-          -e HeatContrail/heat_contrail_service_chain_cirros.env`
+      * `openstack stack create NicoHeatCirros -t HeatContrail/heat_contrail_service_chain_cirros.yaml -e HeatContrail/heat_contrail_service_chain_cirros.env`
 
    2. with custom domain/tenant
    * / this scenario is having a bug, being looked at /

@@ -16,7 +16,7 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
    * `source /etc/kolla/kolla-toolbox/admin-openrc.sh`
    1. create flavor
    * `openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
-1. upload basic Cirros image (use Cirros image of your choice)
+1. upload basic Cirros image
    * `openstack image create cirros \
           --disk-format qcow2 \
           --container-format bare \

@@ -691,13 +691,12 @@ resources:
              }
             ]}
 
-  ServiceHealthCheck_left:
+  ServiceHealthCheck_left1:
     type: OS::ContrailV2::ServiceHealthCheck
     depends_on:
-      - template_ServiceInstance1
-      - template_ServiceInstance2   
+      - template_ServiceInstance1 
     properties:
-      name: { list_join: ['-', [ 'HC', { get_param: tenant }, 'LEFT' ] ] }
+      name: { list_join: ['-', [ 'HC-1', { get_param: tenant }, 'LEFT' ] ] }
       service_health_check_properties:
           service_health_check_properties_enabled: { get_param: health_check_properties_enabled }
           service_health_check_properties_monitor_type: { get_param: health_check_properties_monitor_type }
@@ -706,6 +705,23 @@ resources:
           service_health_check_properties_max_retries: { get_param: health_check_properties_max_retries }
           service_health_check_properties_url_path: { get_param: health_check_properties_url_path }
       service_instance_refs: [ get_resource: template_ServiceInstance1 ]
+      service_instance_refs_data:
+        - service_instance_refs_data_interface_type: "left"
+
+  ServiceHealthCheck_left2:
+    type: OS::ContrailV2::ServiceHealthCheck
+    depends_on:
+      - template_ServiceInstance2 
+    properties:
+      name: { list_join: ['-', [ 'HC-2', { get_param: tenant }, 'LEFT' ] ] }
+      service_health_check_properties:
+          service_health_check_properties_enabled: { get_param: health_check_properties_enabled }
+          service_health_check_properties_monitor_type: { get_param: health_check_properties_monitor_type }
+          service_health_check_properties_delay: { get_param: health_check_properties_delay }
+          service_health_check_properties_timeout: { get_param: health_check_properties_timeout }
+          service_health_check_properties_max_retries: { get_param: health_check_properties_max_retries }
+          service_health_check_properties_url_path: { get_param: health_check_properties_url_path }
+      service_instance_refs: [ get_resource: template_ServiceInstance2 ]
       service_instance_refs_data:
         - service_instance_refs_data_interface_type: "left"
 

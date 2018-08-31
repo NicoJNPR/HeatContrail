@@ -3,7 +3,7 @@
 In order to launch a Contrail service-chain made of two Service-Instance (using Cirros with routing pre-enabled), follow those steps:
 
 1. Install OpenStack CLI (if need be)
-  `- yum install -y gcc python-devel \
+   -`yum install -y gcc python-devel \
     pip install python-openstackclient \
     pip install python-ironicclient`    
 

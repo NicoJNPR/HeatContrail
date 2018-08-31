@@ -707,6 +707,7 @@ resources:
           service_health_check_properties_timeout: { get_param: health_check_properties_timeout }
           service_health_check_properties_max_retries: { get_param: health_check_properties_max_retries }
           service_health_check_properties_url_path: { get_param: health_check_properties_url_path }
+      service_instance_refs: [ get_resource: template_ServiceInstance1 ]
       service_instance_refs: [ get_resource: template_ServiceInstance2 ]
       service_instance_refs_data:
         - service_instance_refs_data_interface_type: "left"

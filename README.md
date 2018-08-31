@@ -30,13 +30,13 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
           --file HeatContrail/CirrosVNF_mgnt_left_right.img`
 1. create the stack with default domain and tenant or custom ones
 
-   1. `with default domain and tenant/project
-        openstack stack create NicoHeatCirros \
+   1. with default domain and tenant/project
+      * `openstack stack create NicoHeatCirros \
         -t HeatContrail/heat_contrail_service_chain_cirros.yaml \
           -e HeatContrail/heat_contrail_service_chain_cirros.env`
 
-   2. `with custom domain/tenant
-        OS_PROJECT_NAME=Nicolas openstack stack create NicolasHeatCirros   -t HeatContrail/heat_contrail_service_chain_cirros.yaml   -e HeatContrail/heat_contrail_service_chain_cirros.env   --parameter domain=default-domain   --parameter tenant=$OS_PROJECT_NAME`
+   2. with custom domain/tenant
+      * `OS_PROJECT_NAME=Nicolas openstack stack create NicolasHeatCirros   -t HeatContrail/heat_contrail_service_chain_cirros.yaml   -e HeatContrail/heat_contrail_service_chain_cirros.env   --parameter domain=default-domain   --parameter tenant=$OS_PROJECT_NAME`
         (got this openstack bug in ocata https://bugs.launchpad.net/kolla-ansible/+bug/1690975)
 
 1. Once stack is succesful, connect to Cirros VM `left_vm` (2.2.2.3) and ping remote cirros (3.3.3.3). Pings will go through and go through the service-chain.

@@ -2,16 +2,22 @@
 
 In order to launch a Contrail service-chain made of two Service-Instance (using Cirros with routing pre-enabled), follow those steps:
 
-1. "git clone https://github.com/NicoJNPR/HeatContrail"
+1. Install OpenStack CLI (if need be)
+        # 1. yum install -y gcc python-devel
+pip install python-openstackclient
+pip install python-ironicclient
+
+1. Install scripts
+        # 1. git clone https://github.com/NicoJNPR/HeatContrail
 
 1. download Cirros image, credentials are `cirros/gocubsgo`
-        "wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img"
+        # 1. wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 1. install heat client if needed
-        "pip install python-heatclient"
+        # 1. pip install python-heatclient
 1. source your OpenStack env file
-        "source /etc/kolla/kolla-toolbox/admin-openrc.sh"
+        # 1. "source /etc/kolla/kolla-toolbox/admin-openrc.sh"
 1. upload basic Cirros image (use Cirros image of your choice)
-        openstack image create cirros \
+        # 1. openstack image create cirros \
           --disk-format qcow2 \
           --container-format bare \
           --public \

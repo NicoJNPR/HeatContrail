@@ -625,7 +625,7 @@ resources:
   test_security_group:
     type: OS::ContrailV2::SecurityGroup
     properties:
-      name: test_security_group
+      name: NicoHeatCirros_security_group
       security_group_entries:
         {
           security_group_entries_policy_rule:

@@ -165,6 +165,41 @@ parameters:
     type: comma_delimited_list
     description: The Services List (no FQN)
 
+
+### Health check parameters
+    
+  health_check_properties_enabled:
+    type: boolean
+    default: true
+    description: administratively enable or disable health check
+    
+  health_check_properties_monitor_type:
+    type: string
+    default: 'PING'
+    description: protocol used to monitor health
+    
+  health_check_properties_delay:
+    type: number
+    default: 3
+    description: frequency (in seconds) at which health check is repeated
+    
+  health_check_properties_timeout:
+    type: number
+    default: 5
+    description: time [in seconds) to wait for response
+
+  health_check_properties_max_retries:
+    type: number
+    default: 2
+    description: number of loss before declaring health KO
+    
+  health_check_properties_url_path:
+    type: string
+    default: 'local-ip'
+    description: in case monitor protocol is HTTP, URL to be used. In case of ICMP, ip address
+    
+
+
 resources:
   template_NetworkIpam_1:
     type: OS::ContrailV2::NetworkIpam
@@ -622,7 +657,7 @@ resources:
         }}]
   }
 
-  test_security_group:
+  security_group:
     type: OS::ContrailV2::SecurityGroup
     properties:
       name: NicoHeatCirros_security_group
@@ -658,5 +693,20 @@ resources:
              }
             ]}
 
-
+  ServiceHealthCheck_left:
+    type: OS::ContrailV2::ServiceHealthCheck
+    depends_on:
+      - template_ServiceInstance2   
+    properties:
+      name: { list_join: ['-', [ 'CUST-HC-EASYGO', { get_param: tenant }, 'LEFT' ] ] }
+      service_health_check_properties:
+          service_health_check_properties_enabled: { get_param: health_check_properties_enabled }
+          service_health_check_properties_monitor_type: { get_param: health_check_properties_monitor_type }
+          service_health_check_properties_delay: { get_param: health_check_properties_delay }
+          service_health_check_properties_timeout: { get_param: health_check_properties_timeout }
+          service_health_check_properties_max_retries: { get_param: health_check_properties_max_retries }
+          service_health_check_properties_url_path: { get_param: health_check_properties_url_path }
+      service_instance_refs: [ get_resource: template_ServiceInstance2 ]
+      service_instance_refs_data:
+        - service_instance_refs_data_interface_type: "left"
 

@@ -696,9 +696,10 @@ resources:
   ServiceHealthCheck_left:
     type: OS::ContrailV2::ServiceHealthCheck
     depends_on:
+      - template_ServiceInstance1
       - template_ServiceInstance2   
     properties:
-      name: { list_join: ['-', [ 'CUST-HC-EASYGO', { get_param: tenant }, 'LEFT' ] ] }
+      name: { list_join: ['-', [ 'HC-', { get_param: tenant }, 'LEFT' ] ] }
       service_health_check_properties:
           service_health_check_properties_enabled: { get_param: health_check_properties_enabled }
           service_health_check_properties_monitor_type: { get_param: health_check_properties_monitor_type }

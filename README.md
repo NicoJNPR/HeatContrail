@@ -3,9 +3,9 @@
 In order to launch a Contrail service-chain made of two Service-Instance (using Cirros with routing pre-enabled), follow those steps:
 
 1. Install OpenStack CLI (if need be)
-        `# 1. yum install -y gcc python-devel \
-			pip install python-openstackclient \
-			pip install python-ironicclient`	
+  `- yum install -y gcc python-devel \
+    pip install python-openstackclient \
+    pip install python-ironicclient`    
 
 1. Install scripts
         `- git clone https://github.com/NicoJNPR/HeatContrail`
@@ -29,7 +29,7 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
           --container-format bare \
           --file HeatContrail/CirrosVNF_mgnt_left_right.img`
 1. create flavor
-		`openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
+        `openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
 1. create the stack with default domain and tenant or custom ones
 
        `1. with default domain and tenant/project

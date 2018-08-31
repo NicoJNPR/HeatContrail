@@ -8,16 +8,16 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
 			pip install python-ironicclient`	
 
 1. Install scripts
-        `# 1. git clone https://github.com/NicoJNPR/HeatContrail`
+        `- git clone https://github.com/NicoJNPR/HeatContrail`
 
 1. download Cirros image, credentials are `cirros/gocubsgo`
-        `# 1. wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img`
+        `- wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img`
 1. install heat client if needed
-        `# 1. pip install python-heatclient`
+        `- pip install python-heatclient`
 1. source your OpenStack env file
-        `# 1. "source /etc/kolla/kolla-toolbox/admin-openrc.sh"`
+        `1. "source /etc/kolla/kolla-toolbox/admin-openrc.sh"`
 1. upload basic Cirros image (use Cirros image of your choice)
-        `# 1. openstack image create cirros \
+        `1. openstack image create cirros \
           --disk-format qcow2 \
           --container-format bare \
           --public \
@@ -32,12 +32,12 @@ In order to launch a Contrail service-chain made of two Service-Instance (using 
 		`openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny`
 1. create the stack with default domain and tenant or custom ones
 
-       `# 1. with default domain and tenant/project
+       `1. with default domain and tenant/project
         openstack stack create NicoHeatCirros \
         -t HeatContrail/heat_contrail_service_chain_cirros.yaml \
           -e HeatContrail/heat_contrail_service_chain_cirros.env`
 
-       `# 2. with custom domain/tenant
+       `2. with custom domain/tenant
         OS_PROJECT_NAME=Nicolas openstack stack create NicolasHeatCirros   -t HeatContrail/heat_contrail_service_chain_cirros.yaml   -e HeatContrail/heat_contrail_service_chain_cirros.env   --parameter domain=default-domain   --parameter tenant=$OS_PROJECT_NAME`
         (got this openstack bug https://bugs.launchpad.net/kolla-ansible/+bug/1690975)
 
